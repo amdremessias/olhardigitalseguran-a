@@ -44,12 +44,17 @@
             background-color: rgba(2, 40, 70, 0.85);
             padding: 1rem 0;
             text-align: center;
-            /* Propriedade para fixar o cabeçalho no topo */
-            position: sticky;
+            position: fixed; /* Alterado para 'fixed' para funcionar com o efeito */
             top: 0;
-            /* Garante que o cabeçalho fique sobre outros elementos */
+            left: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out; /* Adicionado para uma transição suave */
+        }
+
+        header.hide {
+            transform: translateY(-100%); /* Move o cabeçalho para cima, escondendo-o */
         }
 
         header nav {
@@ -468,6 +473,23 @@
             <p>Seu parceiro de confiança em segurança eletrônica.</p>
         </div>
     </footer>
+    
+    <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
 
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Rolando para baixo
+                header.classList.add('hide');
+            } else {
+                // Rolando para cima
+                header.classList.remove('hide');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
 </body>
 </html>
