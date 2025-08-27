@@ -44,17 +44,17 @@
             background-color: rgba(2, 40, 70, 0.85);
             padding: 1rem 0;
             text-align: center;
-            position: fixed; /* Alterado para 'fixed' para funcionar com o efeito */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out; /* Adicionado para uma transição suave */
+            transition: transform 0.3s ease-in-out;
         }
 
         header.hide {
-            transform: translateY(-100%); /* Move o cabeçalho para cima, escondendo-o */
+            transform: translateY(-100%);
         }
 
         header nav {
@@ -67,12 +67,23 @@
             flex-wrap: wrap;
         }
 
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         header .logo {
             font-size: 1.8em;
             font-weight: 700;
             color: #4CAF50;
             margin-bottom: 0;
             text-transform: uppercase;
+        }
+
+        .header-logo-img {
+            height: 40px; /* Ajuste o tamanho conforme necessário */
+            width: auto;
         }
 
         header nav ul {
@@ -303,17 +314,22 @@
             margin-top: 50px;
         }
 
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo-img {
+            max-width: 200px; /* Ajuste o tamanho do logo no rodapé */
+            height: auto;
+            margin-bottom: 15px;
+        }
+
         footer p {
             font-size: 0.9em;
             margin-bottom: 10px;
             color: #ccc;
-        }
-
-        .footer-logo {
-            display: block;
-            margin: 0 auto 15px auto;
-            max-width: 150px;
-            height: auto;
         }
 
         .contact-info {
@@ -338,6 +354,12 @@
 
             header nav ul li {
                 margin: 5px 0;
+            }
+
+            header .logo-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
             }
 
             #hero h1 {
@@ -368,7 +390,10 @@
 
     <header>
         <nav>
-            <div class="logo">OLHAR DIGITAL SEGURANÇA</div>
+            <div class="logo-container">
+                <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/olhardigital.png" alt="Logo Olhar Digital Segurança" class="header-logo-img">
+                <div class="logo">OLHAR DIGITAL SEGURANÇA</div>
+            </div>
             <ul>
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#services">Serviços</a></li>
@@ -468,7 +493,8 @@
     </main>
 
     <footer>
-        <div class="container">
+        <div class="container footer-content">
+            <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/olhardigital.png" alt="Logo Olhar Digital Segurança" class="footer-logo-img">
             <p>&copy; 2025 | OLHAR DIGITAL SEGURANÇA | Todos os direitos reservados.</p>
             <p>Seu parceiro de confiança em segurança eletrônica.</p>
         </div>
