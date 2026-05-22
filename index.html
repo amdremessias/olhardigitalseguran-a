@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Especialistas em segurança eletrônica. Instalação de alarmes, câmeras, cercas elétricas e mais.">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/eagledigital.png" type="image/png">
+    
     <title>OLHAR DIGITAL SEGURANÇA ELETRÔNICA</title>
     <style>
         /* Estilos Gerais */
@@ -21,6 +23,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            overflow-x: hidden;
         }
 
         .overlay {
@@ -37,19 +40,20 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
+            box-sizing: border-box;
         }
 
-        /* Header */
+        /* Header Dinâmico e Fluido */
         header {
-            background-color: rgba(2, 40, 70, 0.85);
+            background-color: rgba(2, 40, 70, 0.95);
             padding: 1rem 0;
             text-align: center;
-            position: fixed;
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease-in-out;
         }
 
@@ -64,25 +68,27 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            flex-wrap: wrap;
+            box-sizing: border-box;
         }
 
         header .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         header .logo {
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: 700;
             color: #4CAF50;
             margin-bottom: 0;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .header-logo-img {
-            height: 40px; /* Ajuste o tamanho conforme necessário */
+            height: 42px;
             width: auto;
         }
 
@@ -92,24 +98,22 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        header nav ul li {
-            margin: 0 15px;
+            gap: 5px;
         }
 
         header nav ul li a {
             color: #fff;
             text-decoration: none;
             font-weight: 400;
-            padding: 5px 10px;
-            transition: color 0.3s ease;
+            padding: 8px 14px;
+            transition: all 0.3s ease;
             border-radius: 4px;
+            font-size: 0.95em;
         }
 
         header nav ul li a:hover {
-            color: #4CAF50;
+            color: #0AFF0A;
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
         /* Hero Section */
@@ -117,12 +121,13 @@
             background-color: rgba(0, 0, 0, 0.65);
             color: #fff;
             text-align: center;
-            padding: 100px 20px;
-            min-height: 500px;
+            padding: 120px 20px;
+            min-height: 450px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.3);
+            box-shadow: inset 0 0 40px rgba(0, 255, 0, 0.2);
+            box-sizing: border-box;
         }
 
         .hero-content {
@@ -132,14 +137,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         #hero h1 {
@@ -150,7 +149,7 @@
         }
 
         #hero p {
-            font-size: 1.4em;
+            font-size: 1.3em;
             line-height: 1.8;
             margin-bottom: 40px;
             color: #E0FFE0;
@@ -160,41 +159,42 @@
             display: inline-block;
             background-color: #4CAF50;
             color: white;
-            padding: 15px 30px;
+            padding: 15px 32px;
             text-decoration: none;
             border-radius: 5px;
             font-size: 1.1em;
             font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
             border: 2px solid #4CAF50;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
         .button:hover {
             background-color: #45a049;
+            border-color: #45a049;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 7px 20px rgba(76,175,80,0.4);
         }
 
-        /* Valores */
-        #valores {
+        /* Seções base */
+        section {
             padding: 60px 20px;
             text-align: center;
             background-color: #fff;
-            margin: 30px auto;
+            margin: 40px auto;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
 
-        #valores h2,
-        #services h2 {
+        section h2 {
             font-size: 2.5em;
             margin-bottom: 25px;
             color: #333;
             position: relative;
         }
 
-        #valores h2::after,
-        #services h2::after {
+        section h2::after {
             content: '';
             position: absolute;
             left: 50%;
@@ -206,180 +206,337 @@
             border-radius: 2px;
         }
 
+        /* Valores */
         #valores .valores-list {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
             margin-top: 50px;
         }
 
         #valores .valor-item {
-            flex: 1 1 200px;
-            padding: 20px;
+            padding: 25px 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
         }
 
         #valores .valor-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: rgba(76,175,80,0.3);
         }
 
         #valores .valor-item h3 {
-            font-size: 1.5em;
+            font-size: 1.4em;
             color: #4CAF50;
-            margin-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 12px;
         }
 
         #valores .valor-item p {
-            font-size: 1em;
+            font-size: 0.95em;
             color: #666;
+            margin: 0;
         }
 
         /* Serviços */
-        #services {
-            padding: 60px 20px;
-            text-align: center;
-            background-color: #fff;
-            margin: 30px auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
         .service-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .service-item {
             background-color: #f9f9f9;
-            padding: 30px;
+            padding: 35px 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
         }
 
         .service-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border-color: rgba(76,175,80,0.3);
         }
 
         .service-item .icon {
             font-size: 3em;
             margin-bottom: 15px;
-            color: #4CAF50;
+            display: inline-block;
         }
 
         .service-item h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 1.4em;
+            margin: 10px 0;
+            color: #222;
+        }
+
+        .service-item p {
+            font-size: 0.95em;
+            color: #555;
+            margin: 0;
         }
 
         /* Contato */
-        #contact {
-            padding: 60px 20px;
-            text-align: center;
-            background-color: #fff;
-            margin: 30px auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        #contact h2 {
-            font-size: 2.5em;
-            margin-bottom: 25px;
-            color: #333;
-        }
-
         #contact p {
             font-size: 1.1em;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
+            color: #555;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
         }
 
-        /* Footer */
+        .contact-info {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2, 40, 70;
+            margin-bottom: 25px;
+            background: #f0f7f0;
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .contact-info p {
+            margin: 0 !important;
+            color: #4CAF50 !important;
+        }
+
+        /* Footer e Links LGPD */
         footer {
-            background: rgba(2, 40, 70, 0.85);
-            text-align: center;
-            padding: 20px;
+            background: rgba(2, 40, 70, 0.95);
+            padding: 40px 20px;
             color: #fff;
-            margin-top: 50px;
+            margin-top: 60px;
+            border-top: 3px solid #4CAF50;
         }
 
         footer .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .footer-logo-img {
-            max-width: 200px; /* Ajuste o tamanho do logo no rodapé */
+            max-width: 160px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         footer p {
-            font-size: 0.9em;
-            margin-bottom: 10px;
+            font-size: 0.95em;
+            margin: 5px 0;
             color: #ccc;
         }
 
-        .contact-info {
-            font-size: 1.2em;
-            font-weight: 700;
-            color: #4CAF50;
-            margin-bottom: 10px;
+        /* Links Obrigatórios LGPD no Rodapé */
+        .footer-compliance-links {
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
+        .footer-compliance-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.2s ease;
+        }
+
+        .footer-compliance-links a:hover {
+            color: #0AFF0A;
+            text-decoration: underline;
+        }
+
+        .dpo-section {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-top: 15px;
+            border-top: 1px solid #1a4a73;
+            padding-top: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- ESTILOS DO BANNER DE COOKIES (LGPD) --- */
+        .lgpd-cookie-banner {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 40, 70, 0.98);
+            border-top: 3px solid #4CAF50;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+            z-index: 99999;
+            box-sizing: border-box;
+            transition: bottom 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .lgpd-cookie-banner.active {
+            bottom: 0;
+        }
+
+        .cookie-banner-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @media (min-width: 769px) {
+            .cookie-banner-container {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .cookie-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #e0e0e0;
+            text-align: left;
+        }
+
+        .cookie-text a {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cookie {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accept { background-color: #4CAF50; color: white; }
+        .btn-accept:hover { background-color: #45a049; }
+        .btn-reject { background-color: rgba(255,255,255,0.1); color: #ccc; border: 1px solid rgba(255,255,255,0.2); }
+        .btn-reject:hover { background-color: rgba(255,255,255,0.2); color: #fff; }
+        
+        .cookie-preferences {
+            display: none;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .preference-item {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 0.9em;
+        }
+        .preference-item input {
+            margin-right: 5px;
+            accent-color: #4CAF50;
+        }
+
+        /* --- MEDIA QUERIES EXCLUSIVAS PARA SMARTPHONES --- */
+        @media (max-width: 868px) {
+            header {
+                position: relative; /* Remove a fixação persistente ruim para mobile */
+                top: auto;
+                left: auto;
+                box-shadow: none;
+                padding: 15px 0;
+            }
+            
+            header.hide {
+                transform: none; /* Desativa ocultação em scroll no mobile */
+            }
+
             header nav {
                 flex-direction: column;
-                align-items: center;
+                gap: 15px;
+                padding: 0 15px;
             }
 
             header nav ul {
-                flex-direction: column;
                 width: 100%;
-                margin-top: 15px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* Alinhamento uniforme em grade */
+                gap: 5px;
+                text-align: center;
             }
 
             header nav ul li {
-                margin: 5px 0;
+                margin: 0;
+            }
+
+            header nav ul li a {
+                display: block;
+                font-size: 0.85em;
+                padding: 8px 4px;
+                background: rgba(255,255,255,0.05);
+                border-radius: 4px;
             }
 
             header .logo-container {
                 flex-direction: column;
+                gap: 6px;
+            }
+
+            header .logo {
+                font-size: 1.1em;
                 text-align: center;
-                gap: 5px;
+            }
+            
+            #hero {
+                padding: 60px 15px;
             }
 
             #hero h1 {
-                font-size: 2.5em;
+                font-size: 2.2em;
             }
 
             #hero p {
                 font-size: 1.1em;
+                margin-bottom: 30px;
             }
 
             section {
                 padding: 40px 15px;
+                margin: 20px auto;
+            }
+
+            section h2 {
+                font-size: 1.8em;
             }
 
             .service-list {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
-
-            #valores .valores-list {
-                flex-direction: column;
+            
+            .cookie-buttons {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
         }
     </style>
@@ -392,7 +549,7 @@
         <nav>
             <div class="logo-container">
                 <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Logo Olhar Digital Segurança" class="header-logo-img">
-                <div class="logo">OLHAR DIGITAL SEGURANÇA ELETRÔNICA</div>
+                <h1 class="logo">Olhar Digital</h1>
             </div>
             <ul>
                 <li><a href="#hero">Início</a></li>
@@ -487,6 +644,7 @@
                 <div class="contact-info">
                     <p>Telefone: (14) 99816-0878</p>
                 </div>
+                <br>
                 <a href="https://wa.me/5514998160878" class="button" target="_blank">Enviar Mensagem no WhatsApp</a>
             </div>
         </section>
@@ -495,27 +653,96 @@
     <footer>
         <div class="container footer-content">
             <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Logo Olhar Digital Segurança" class="footer-logo-img">
-            <p>&copy; 2025 | OLHAR DIGITAL SEGURANÇA ELETRÔNICA| Todos os direitos reservados.</p>
+            
+            <div class="footer-compliance-links">
+                <a href="privacidade.html">Política de Privacidade</a> | 
+                <a href="termos.html">Termos de Uso</a> | 
+                <a href="cookies.html">Política de Cookies</a> | 
+                <a href="titulares.html">Direitos do Titular (Exclusão/Acesso)</a>
+            </div>
+
+            <p>&copy; 2026 | OLHAR DIGITAL SEGURANÇA ELETRÔNICA | Todos os direitos reservados conforme a Legislação Brasileira.</p>
             <p>Seu parceiro de confiança em segurança eletrônica.</p>
+            
+            <div class="dpo-section">
+                <strong>Encarregado de Proteção de Dados (DPO):</strong> dpo@olhardigitalseguranca.com.br | Atendimento em conformidade com as diretrizes da ANPD.
+            </div>
         </div>
     </footer>
-    
+
+    <div id="cookieBanner" class="lgpd-cookie-banner">
+        <div class="cookie-banner-container">
+            <div class="cookie-text">
+                Utilizamos cookies essenciais e tecnologias semelhantes para garantir o funcionamento correto do nosso site, analisar o tráfego e melhorar a sua experiência de navegação de acordo com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. Você pode aceitar todos os cookies ou configurar suas preferências em nossa <a href="privacidade.html">Política de Privacidade</a>.
+            </div>
+            <div class="cookie-buttons">
+                <button class="btn-cookie btn-reject" onclick="respondCookies(false)">Recusar</button>
+                <button class="btn-cookie btn-reject" onclick="togglePreferences()">Gerenciar</button>
+                <button class="btn-cookie btn-accept" onclick="respondCookies(true)">Aceitar Tudo</button>
+            </div>
+        </div>
+        <div id="cookiePrefs" class="cookie-preferences">
+            <div class="preference-item">
+                <input type="checkbox" id="prefEssenciais" checked disabled> <strong>Essenciais (Sempre ativos)</strong>
+            </div>
+            <div class="preference-item">
+                <input type="checkbox" id="prefAnaliticos"> <strong>Estatísticas / Analytics</strong>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Sistema de Controle de Rolagem (Ocultação dinâmica de Header - Apenas para Desktop)
         let lastScrollTop = 0;
         const header = document.querySelector('header');
 
         window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > lastScrollTop) {
-                // Rolando para baixo
-                header.classList.add('hide');
-            } else {
-                // Rolando para cima
-                header.classList.remove('hide');
+            if (window.innerWidth > 868) { // Roda a lógica apenas em telas grandes
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    header.classList.add('hide');
+                } else {
+                    header.classList.remove('hide');
+                }
+                lastScrollTop = scrollTop;
             }
-            lastScrollTop = scrollTop;
         });
+
+        // --- SISTEMA DE GESTÃO DE COOKIES E DIRETRIZES DE OPT-IN (LGPD) ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('lgpd_olhardigital_consent');
+            if (!consent) {
+                document.getElementById('cookieBanner').classList.add('active');
+            } else if (consent === 'accepted_all' || consent === 'accepted_custom') {
+                executeTracking();
+            }
+        });
+
+        function togglePreferences() {
+            const prefs = document.getElementById('cookiePrefs');
+            prefs.style.display = prefs.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function respondCookies(acceptAll) {
+            if (acceptAll) {
+                localStorage.setItem('lgpd_olhardigital_consent', 'accepted_all');
+                executeTracking();
+            } else {
+                const analyticsChecked = document.getElementById('prefAnaliticos').checked;
+                if (analyticsChecked) {
+                    localStorage.setItem('lgpd_olhardigital_consent', 'accepted_custom');
+                    executeTracking();
+                } else {
+                    localStorage.setItem('lgpd_olhardigital_consent', 'rejected');
+                }
+            }
+            document.getElementById('cookieBanner').classList.remove('active');
+        }
+
+        function executeTracking() {
+            // Caso insira scripts de rastreamento futuros (Google Analytics, Facebook Pixel, etc.), inicialize-os de forma condicionada aqui.
+            console.log("Scripts de monitoramento autorizados pelo usuário em conformidade com a LGPD.");
+        }
     </script>
 </body>
 </html>
