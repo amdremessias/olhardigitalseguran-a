@@ -4,745 +4,964 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Especialistas em segurança eletrônica. Instalação de alarmes, câmeras, cercas elétricas e mais.">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library for Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/eagledigital.png" type="image/png">
     
-    <title>OLHAR DIGITAL SEGURANÇA ELETRÔNICA</title>
+    <title>OLHAR DIGITAL | Segurança Eletrônica Inteligente</title>
+    
     <style>
-        /* Estilos Gerais */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-            background-image: url('https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/OIP-619504664.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            overflow-x: hidden;
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #022846;
+            --accent: #0AFF0A;
+            --text-dark: #1a1a1a;
+            --text-light: #f4f4f4;
+            --bg-light: #ffffff;
+            --bg-gray: #f8f9fa;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            z-index: -1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            user-select: none; /* Previne seleção de texto básica */
+        }
+
+        /* Bloqueio visual de seleção para evitar cópia fácil */
+        .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Header Dinâmico e Fluido */
-        header {
-            background-color: rgba(2, 40, 70, 0.95);
-            padding: 1rem 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        header.hide {
-            transform: translateY(-100%);
-        }
-
-        header nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            box-sizing: border-box;
         }
 
-        header .logo-container {
+        /* Header */
+        header {
+            background-color: rgba(2, 40, 70, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: var(--secondary);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
-        }
-
-        header .logo {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #4CAF50;
-            margin-bottom: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-decoration: none;
         }
 
         .header-logo-img {
-            height: 42px;
+            height: 45px;
             width: auto;
+            filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.3));
         }
 
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
             display: flex;
-            justify-content: center;
-            gap: 5px;
+            list-style: none;
+            gap: 30px;
         }
 
-        header nav ul li a {
+        .nav-links a {
             color: #fff;
             text-decoration: none;
-            font-weight: 400;
-            padding: 8px 14px;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            font-size: 0.95em;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
         }
 
-        header nav ul li a:hover {
-            color: #0AFF0A;
-            background-color: rgba(255, 255, 255, 0.08);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
         #hero {
-            background-color: rgba(0, 0, 0, 0.65);
-            color: #fff;
-            text-align: center;
-            padding: 120px 20px;
-            min-height: 450px;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/OIP-619504664.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: inset 0 0 40px rgba(0, 255, 0, 0.2);
-            box-sizing: border-box;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeIn 1.5s ease-out;
+            max-width: 900px;
+            padding: 0 20px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        #hero h1 {
-            font-size: 3.5em;
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
             margin-bottom: 20px;
-            color: #4CAF50;
-            text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+            text-transform: uppercase;
         }
 
-        #hero p {
-            font-size: 1.3em;
-            line-height: 1.8;
+        .hero-content h1 span {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
             margin-bottom: 40px;
-            color: #E0FFE0;
+            color: #e0e0e0;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .button {
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
             display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 32px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1em;
+            padding: 16px 35px;
+            border-radius: 50px;
             font-weight: 700;
-            transition: all 0.3s ease;
-            border: 2px solid #4CAF50;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
         }
 
-        .button:hover {
-            background-color: #45a049;
-            border-color: #45a049;
+        .btn-primary {
+            background-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(76,175,80,0.4);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
         }
 
-        /* Seções base */
-        section {
-            padding: 60px 20px;
-            text-align: center;
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .btn-outline:hover {
             background-color: #fff;
-            margin: 40px auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
+            color: var(--secondary);
+            transform: translateY(-3px);
         }
 
-        section h2 {
-            font-size: 2.5em;
-            margin-bottom: 25px;
-            color: #333;
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
             position: relative;
+            display: inline-block;
         }
 
-        section h2::after {
+        .section-header h2::after {
             content: '';
             position: absolute;
-            left: 50%;
             bottom: -10px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 60px;
             height: 4px;
-            background-color: #4CAF50;
+            background-color: var(--primary);
             border-radius: 2px;
         }
 
-        /* Valores */
-        #valores .valores-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        #valores .valor-item {
-            padding: 25px 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-        #valores .valor-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            border-color: rgba(76,175,80,0.3);
-        }
-
-        #valores .valor-item h3 {
-            font-size: 1.4em;
-            color: #4CAF50;
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-
-        #valores .valor-item p {
-            font-size: 0.95em;
+        .section-header p {
             color: #666;
-            margin: 0;
-        }
-
-        /* Serviços */
-        .service-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-item {
-            background-color: #f9f9f9;
-            padding: 35px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-        .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-            border-color: rgba(76,175,80,0.3);
-        }
-
-        .service-item .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        .service-item h3 {
-            font-size: 1.4em;
-            margin: 10px 0;
-            color: #222;
-        }
-
-        .service-item p {
-            font-size: 0.95em;
-            color: #555;
-            margin: 0;
-        }
-
-        /* Contato */
-        #contact p {
-            font-size: 1.1em;
-            color: #555;
-            max-width: 750px;
-            margin: 0 auto 30px auto;
-        }
-
-        .contact-info {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #2, 40, 70;
-            margin-bottom: 25px;
-            background: #f0f7f0;
-            display: inline-block;
-            padding: 10px 25px;
-            border-radius: 5px;
-            border-left: 4px solid #4CAF50;
-        }
-        
-        .contact-info p {
-            margin: 0 !important;
-            color: #4CAF50 !important;
-        }
-
-        /* Footer e Links LGPD */
-        footer {
-            background: rgba(2, 40, 70, 0.95);
-            padding: 40px 20px;
-            color: #fff;
-            margin-top: 60px;
-            border-top: 3px solid #4CAF50;
-        }
-
-        footer .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 1000px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .footer-logo-img {
-            max-width: 160px;
-            height: auto;
+        /* Valores */
+        #valores {
+            background-color: var(--bg-gray);
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .valor-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+
+        .valor-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--primary);
+        }
+
+        .valor-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
             margin-bottom: 20px;
         }
 
-        footer p {
-            font-size: 0.95em;
-            margin: 5px 0;
-            color: #ccc;
+        .valor-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
         }
 
-        /* Links Obrigatórios LGPD no Rodapé */
-        .footer-compliance-links {
-            margin: 15px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        .valor-card p {
+            font-size: 0.95rem;
+            color: #666;
         }
 
-        .footer-compliance-links a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: color 0.2s ease;
+        /* Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .footer-compliance-links a:hover {
-            color: #0AFF0A;
-            text-decoration: underline;
+        .service-card {
+            position: relative;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 40px;
+            z-index: 1;
         }
 
-        .dpo-section {
-            font-size: 0.85em;
-            color: #aaa;
-            margin-top: 15px;
-            border-top: 1px solid #1a4a73;
-            padding-top: 15px;
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 0;
+            background: var(--secondary);
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-card:hover h3, 
+        .service-card:hover p {
+            color: #fff;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--primary);
+            color: #fff;
+            transform: rotateY(360deg);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--bg-gray);
+            color: var(--primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        /* Contato */
+        #contact {
+            background: linear-gradient(rgba(2, 40, 70, 0.9), rgba(2, 40, 70, 0.9)), 
+                        url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
             text-align: center;
         }
 
-        /* --- ESTILOS DO BANNER DE COOKIES (LGPD) --- */
-        .lgpd-cookie-banner {
-            position: fixed;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            background: rgba(2, 40, 70, 0.98);
-            border-top: 3px solid #4CAF50;
+        #contact .section-header h2 {
             color: #fff;
-            padding: 20px;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
-            z-index: 99999;
-            box-sizing: border-box;
-            transition: bottom 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .lgpd-cookie-banner.active {
-            bottom: 0;
+        #contact .section-header p {
+            color: #ccc;
         }
 
-        .cookie-banner-container {
-            max-width: 1100px;
+        .contact-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            max-width: 800px;
             margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .phone-number {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin: 20px 0 40px;
+            display: block;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #011627;
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after, .footer-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            color: #ccc;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            gap: 10px;
         }
 
-        @media (min-width: 769px) {
-            .cookie-banner-container {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
+        .footer-contact i {
+            color: var(--primary);
         }
 
-        .cookie-text {
-            font-size: 0.95em;
-            line-height: 1.5;
-            color: #e0e0e0;
-            text-align: left;
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
         }
 
-        .cookie-text a {
-            color: #4CAF50;
+        .dpo-info {
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* LGPD Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            background: #fff;
+            color: var(--secondary);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: none;
+            animation: slideUp 0.5s ease-out;
+            max-width: 500px;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .cookie-banner h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cookie-banner p {
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .cookie-banner a {
+            color: var(--primary);
             text-decoration: underline;
         }
 
-        .cookie-buttons {
+        .cookie-btns {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
         }
 
-        .btn-cookie {
+        .btn-sm {
             padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
+            font-size: 0.8rem;
         }
 
-        .btn-accept { background-color: #4CAF50; color: white; }
-        .btn-accept:hover { background-color: #45a049; }
-        .btn-reject { background-color: rgba(255,255,255,0.1); color: #ccc; border: 1px solid rgba(255,255,255,0.2); }
-        .btn-reject:hover { background-color: rgba(255,255,255,0.2); color: #fff; }
-        
-        .cookie-preferences {
-            display: none;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            margin-top: 10px;
-            text-align: left;
-        }
-        .preference-item {
-            display: inline-block;
-            margin-right: 20px;
-            font-size: 0.9em;
-        }
-        .preference-item input {
-            margin-right: 5px;
-            accent-color: #4CAF50;
-        }
-
-        /* --- MEDIA QUERIES EXCLUSIVAS PARA SMARTPHONES --- */
-        @media (max-width: 868px) {
-            header {
-                position: relative; /* Remove a fixação persistente ruim para mobile */
-                top: auto;
-                left: auto;
-                box-shadow: none;
-                padding: 15px 0;
-            }
-            
-            header.hide {
-                transform: none; /* Desativa ocultação em scroll no mobile */
-            }
-
-            header nav {
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--secondary);
                 flex-direction: column;
-                gap: 15px;
-                padding: 0 15px;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.2);
             }
 
-            header nav ul {
-                width: 100%;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr); /* Alinhamento uniforme em grade */
-                gap: 5px;
-                text-align: center;
+            .nav-links.active {
+                right: 0;
             }
 
-            header nav ul li {
-                margin: 0;
-            }
-
-            header nav ul li a {
+            .mobile-menu-btn {
                 display: block;
-                font-size: 0.85em;
-                padding: 8px 4px;
-                background: rgba(255,255,255,0.05);
-                border-radius: 4px;
             }
 
-            header .logo-container {
-                flex-direction: column;
-                gap: 6px;
+            .hero-content h1 {
+                font-size: 3rem;
             }
+        }
 
-            header .logo {
-                font-size: 1.1em;
-                text-align: center;
-            }
-            
-            #hero {
-                padding: 60px 15px;
-            }
-
-            #hero h1 {
-                font-size: 2.2em;
-            }
-
-            #hero p {
-                font-size: 1.1em;
-                margin-bottom: 30px;
-            }
-
+        @media (max-width: 576px) {
             section {
-                padding: 40px 15px;
-                margin: 20px auto;
+                padding: 60px 0;
             }
 
-            section h2 {
-                font-size: 1.8em;
+            .hero-content h1 {
+                font-size: 2.2rem;
             }
 
-            .service-list {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .cta-buttons {
+                flex-direction: column;
             }
-            
-            .cookie-buttons {
+
+            .btn {
                 width: 100%;
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 8px;
             }
+
+            .contact-box {
+                padding: 30px 20px;
+            }
+
+            .cookie-banner {
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Bloqueia botão direito -->
 
-    <div class="overlay"></div>
-
-    <header>
-        <nav>
-            <div class="logo-container">
-                <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Logo Olhar Digital Segurança" class="header-logo-img">
-                <h1 class="logo">Olhar Digital</h1>
-            </div>
-            <ul>
-                <li><a href="#hero">Início</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-        </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo-container">
+                    <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Olhar Digital" class="header-logo-img">
+                    <div class="logo-text">Olhar<span>Digital</span></div>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#valores">Valores</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section id="hero">
-            <div class="hero-content">
-                <h1>Sua Segurança é a Nossa Prioridade</h1>
-                <p>Especialistas em soluções de segurança eletrônica, protegendo o que é mais importante para você com tecnologia de ponta e excelência no atendimento.</p>
-                <a href="#services" class="button">Conheça Nossos Serviços</a>
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1>Sua Segurança é a <span>Nossa Prioridade</span></h1>
+                <p>Tecnologia de ponta e excelência no atendimento para proteger o que é mais importante para você.</p>
+                <div class="cta-buttons">
+                    <a href="#services" class="btn btn-primary">Nossos Serviços</a>
+                    <a href="https://wa.me/5514998160878" target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Orçamento Grátis</a>
+                </div>
             </div>
         </section>
 
+        <!-- Valores Section -->
         <section id="valores">
             <div class="container">
-                <h2>Nossos Valores</h2>
-                <p>Guiamos nosso trabalho por princípios que garantem a melhor experiência e os resultados mais eficazes para nossos clientes.</p>
-                <div class="valores-list">
-                    <div class="valor-item">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Nossos Valores</h2>
+                    <p>Princípios que guiam nossa excelência e compromisso com você.</p>
+                </div>
+                <div class="valores-grid">
+                    <div class="valor-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-shield-halved"></i>
                         <h3>Ética e Transparência</h3>
                         <p>Atuamos com total honestidade, construindo relações de confiança duradouras.</p>
                     </div>
-                    <div class="valor-item">
+                    <div class="valor-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-microchip"></i>
                         <h3>Inovação</h3>
-                        <p>Buscamos constantemente as tecnologias mais avançadas para oferecer soluções eficientes e modernas.</p>
+                        <p>Buscamos constantemente as tecnologias mais avançadas para oferecer soluções eficientes.</p>
                     </div>
-                    <div class="valor-item">
+                    <div class="valor-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-star"></i>
                         <h3>Excelência</h3>
-                        <p>Entregamos serviços de alta qualidade, do planejamento à execução, com atenção a cada detalhe.</p>
+                        <p>Entregamos serviços de alta qualidade, do planejamento à execução, com atenção aos detalhes.</p>
                     </div>
-                    <div class="valor-item">
+                    <div class="valor-card" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-handshake"></i>
                         <h3>Respeito</h3>
-                        <p>Valorizamos nossos clientes, colaboradores e parceiros, tratando a todos com dignidade e profissionalismo.</p>
+                        <p>Valorizamos nossos clientes e parceiros, tratando a todos com dignidade e profissionalismo.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Serviços Section -->
         <section id="services">
             <div class="container">
-                <h2>Serviços de Segurança para Você</h2>
-                <p>Oferecemos uma gama completa de soluções para proteger sua casa, empresa ou propriedade rural.</p>
-                <div class="service-list">
-                    <article class="service-item">
-                        <div class="icon">🚨</div>
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Soluções Inteligentes</h2>
+                    <p>Proteção completa para sua residência, empresa ou propriedade rural.</p>
+                </div>
+                <div class="services-grid">
+                    <!-- Alarme -->
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-delay="100">
+                        <div class="service-icon"><i class="fas fa-bell"></i></div>
                         <h3>Instalação de Alarmes</h3>
-                        <p>Sistemas de alarme personalizados que garantem a detecção e o alerta imediato de intrusos.</p>
-                    </article>
-                    <article class="service-item">
-                        <div class="icon">🎥</div>
+                        <p>Sistemas personalizados que garantem a detecção e o alerta imediato de intrusos.</p>
+                    </div>
+                    <!-- Câmeras -->
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="service-icon"><i class="fas fa-video"></i></div>
                         <h3>Câmeras de Segurança</h3>
                         <p>Monitoramento 24 horas com câmeras de alta resolução para vigilância completa.</p>
-                    </article>
-                    <article class="service-item">
-                        <div class="icon">⚡</div>
+                    </div>
+                    <!-- Cerca -->
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-delay="300">
+                        <div class="service-icon"><i class="fas fa-bolt"></i></div>
                         <h3>Cerca Elétrica</h3>
                         <p>Barreira física e eletrônica para inibir invasões e reforçar a segurança do perímetro.</p>
-                    </article>
-                    <article class="service-item">
-                        <div class="icon">⚙️</div>
+                    </div>
+                    <!-- Automatização -->
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-delay="400">
+                        <div class="service-icon"><i class="fas fa-gears"></i></div>
                         <h3>Automatização</h3>
-                        <p>Controle de portões e acesso com sistemas automatizados para maior comodidade e segurança.</p>
-                    </article>
-                    <article class="service-item">
-                        <div class="icon">📞</div>
+                        <p>Controle de portões e acesso com sistemas automatizados para maior comodidade.</p>
+                    </div>
+                    <!-- Interfones -->
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-delay="500">
+                        <div class="service-icon"><i class="fas fa-phone-volume"></i></div>
                         <h3>Interfones</h3>
-                        <p>Soluções de comunicação para controle de entrada, tanto para residências quanto para condomínios.</p>
-                    </article>
-                    <article class="service-item">
-                        <div class="icon">🔧</div>
-                        <h3>Pequenas Soldas</h3>
-                        <p>Reparos e reforços em estruturas metálicas para a fixação de equipamentos de segurança.</p>
-                    </article>
-                    <article class="service-item">
-                        <div class="icon">💡</div>
+                        <p>Soluções de comunicação para controle de entrada residencial e condominial.</p>
+                    </div>
+                    <!-- Eletricista -->
+                    <div class="service-card" data-aos="zoom-in-up" data-aos-delay="600">
+                        <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
                         <h3>Eletricista</h3>
-                        <p>Serviços elétricos especializados para garantir a instalação segura e o pleno funcionamento dos sistemas.</p>
-                    </article>
+                        <p>Serviços elétricos especializados para garantir a instalação segura dos sistemas.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Contato Section -->
         <section id="contact">
             <div class="container">
-                <h2>Fale Conosco Agora!</h2>
-                <p>Entre em contato para um orçamento sem compromisso ou para saber mais sobre nossas soluções de segurança.</p>
-                <div class="contact-info">
-                    <p>Telefone: (14) 99816-0878</p>
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Fale Conosco Agora</h2>
+                    <p>Estamos prontos para atender suas necessidades de segurança.</p>
                 </div>
-                <br>
-                <a href="https://wa.me/5514998160878" class="button" target="_blank">Enviar Mensagem no WhatsApp</a>
+                <div class="contact-box" data-aos="zoom-in">
+                    <p>Solicite um orçamento sem compromisso pelo WhatsApp:</p>
+                    <a href="tel:14998160878" class="phone-number">(14) 99816-0878</a>
+                    <a href="https://wa.me/5514998160878" target="_blank" class="btn btn-primary btn-lg">
+                        <i class="fab fa-whatsapp"></i> Iniciar Conversa
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Logo Olhar Digital Segurança" class="footer-logo-img">
-            
-            <div class="footer-compliance-links">
-                <a href="privacidade.html">Política de Privacidade</a> | 
-                <a href="termos.html">Termos de Uso</a> | 
-                <a href="cookies.html">Política de Cookies</a> | 
-                <a href="titulares.html">Direitos do Titular (Exclusão/Acesso)</a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Olhar Digital">
+                    <p>Sua segurança levada a sério. Especialistas em proteção eletrônica com tecnologia de ponta.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="termos.html">Termos de Uso</a></li>
+                        <li><a href="cookies.html">Política de Cookies</a></li>
+                        <li><a href="titulares.html">Direitos do Titular</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (14) 99816-0878</p>
+                    <p><i class="fas fa-envelope"></i> contato@olhardigitalseguranca.com.br</p>
+                    <p><i class="fas fa-location-dot"></i> Atendimento em toda região</p>
+                </div>
             </div>
-
-            <p>&copy; 2026 | OLHAR DIGITAL SEGURANÇA ELETRÔNICA | Todos os direitos reservados conforme a Legislação Brasileira.</p>
-            <p>Seu parceiro de confiança em segurança eletrônica.</p>
-            
-            <div class="dpo-section">
-                <strong>Encarregado de Proteção de Dados (DPO):</strong> dpo@olhardigitalseguranca.com.br | Atendimento em conformidade com as diretrizes da ANPD.
+            <div class="footer-bottom">
+                <p>&copy; 2026 OLHAR DIGITAL SEGURANÇA ELETRÔNICA. Todos os direitos reservados.</p>
+                <p class="dpo-info">Encarregado de Dados (DPO): dpo@olhardigitalseguranca.com.br | Em conformidade com a LGPD.</p>
             </div>
         </div>
     </footer>
 
-    <div id="cookieBanner" class="lgpd-cookie-banner">
-        <div class="cookie-banner-container">
-            <div class="cookie-text">
-                Utilizamos cookies essenciais e tecnologias semelhantes para garantir o funcionamento correto do nosso site, analisar o tráfego e melhorar a sua experiência de navegação de acordo com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. Você pode aceitar todos os cookies ou configurar suas preferências em nossa <a href="privacidade.html">Política de Privacidade</a>.
+    <!-- LGPD Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <h3><i class="fas fa-cookie-bite"></i> Gestão de Privacidade</h3>
+        <p>Utilizamos cookies para garantir o funcionamento do site e melhorar sua experiência. Em conformidade com a <strong>LGPD</strong>, você pode escolher quais cookies deseja permitir.</p>
+        
+        <div id="cookieOptions" style="display: none; margin-bottom: 15px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <input type="checkbox" id="cookieEssential" checked disabled>
+                <label for="cookieEssential" style="font-size: 0.85rem;"><strong>Essenciais:</strong> Necessários para o site funcionar. (Sempre ativos)</label>
             </div>
-            <div class="cookie-buttons">
-                <button class="btn-cookie btn-reject" onclick="respondCookies(false)">Recusar</button>
-                <button class="btn-cookie btn-reject" onclick="togglePreferences()">Gerenciar</button>
-                <button class="btn-cookie btn-accept" onclick="respondCookies(true)">Aceitar Tudo</button>
-            </div>
-        </div>
-        <div id="cookiePrefs" class="cookie-preferences">
-            <div class="preference-item">
-                <input type="checkbox" id="prefEssenciais" checked disabled> <strong>Essenciais (Sempre ativos)</strong>
-            </div>
-            <div class="preference-item">
-                <input type="checkbox" id="prefAnaliticos"> <strong>Estatísticas / Analytics</strong>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="cookieAnalytics">
+                <label for="cookieAnalytics" style="font-size: 0.85rem;"><strong>Analíticos:</strong> Nos ajudam a entender como você usa o site.</label>
             </div>
         </div>
+
+        <div class="cookie-btns">
+            <button class="btn btn-primary btn-sm" onclick="acceptAllCookies()">Aceitar Tudo</button>
+            <button class="btn btn-outline btn-sm" style="color: #333; border-color: #ccc;" onclick="toggleOptions()" id="btnOptions">Preferências</button>
+            <button class="btn btn-primary btn-sm" style="display: none; background-color: var(--secondary);" onclick="savePreferences()" id="btnSavePrefs">Salvar Seleção</button>
+        </div>
+        <p style="font-size: 0.75rem; margin-top: 15px; margin-bottom: 0;">Consulte nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Sistema de Controle de Rolagem (Ocultação dinâmica de Header - Apenas para Desktop)
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
-
-        window.addEventListener('scroll', function() {
-            if (window.innerWidth > 868) { // Roda a lógica apenas em telas grandes
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop) {
-                    header.classList.add('hide');
-                } else {
-                    header.classList.remove('hide');
-                }
-                lastScrollTop = scrollTop;
-            }
+        // Inicializar Animações
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
         });
 
-        // --- SISTEMA DE GESTÃO DE COOKIES E DIRETRIZES DE OPT-IN (LGPD) ---
-        window.addEventListener('DOMContentLoaded', () => {
-            const consent = localStorage.getItem('lgpd_olhardigital_consent');
-            if (!consent) {
-                document.getElementById('cookieBanner').classList.add('active');
-            } else if (consent === 'accepted_all' || consent === 'accepted_custom') {
-                executeTracking();
-            }
-        });
-
-        function togglePreferences() {
-            const prefs = document.getElementById('cookiePrefs');
-            prefs.style.display = prefs.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function respondCookies(acceptAll) {
-            if (acceptAll) {
-                localStorage.setItem('lgpd_olhardigital_consent', 'accepted_all');
-                executeTracking();
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                const analyticsChecked = document.getElementById('prefAnaliticos').checked;
-                if (analyticsChecked) {
-                    localStorage.setItem('lgpd_olhardigital_consent', 'accepted_custom');
-                    executeTracking();
-                } else {
-                    localStorage.setItem('lgpd_olhardigital_consent', 'rejected');
-                }
+                header.classList.remove('scrolled');
             }
-            document.getElementById('cookieBanner').classList.remove('active');
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // LGPD Cookie Logic
+        const cookieBanner = document.getElementById('cookieBanner');
+        const cookieOptions = document.getElementById('cookieOptions');
+        const btnOptions = document.getElementById('btnOptions');
+        const btnSavePrefs = document.getElementById('btnSavePrefs');
+
+        function toggleOptions() {
+            if (cookieOptions.style.display === 'none') {
+                cookieOptions.style.display = 'block';
+                btnOptions.style.display = 'none';
+                btnSavePrefs.style.display = 'inline-block';
+            } else {
+                cookieOptions.style.display = 'none';
+                btnOptions.style.display = 'inline-block';
+                btnSavePrefs.style.display = 'none';
+            }
         }
 
-        function executeTracking() {
-            // Caso insira scripts de rastreamento futuros (Google Analytics, Facebook Pixel, etc.), inicialize-os de forma condicionada aqui.
-            console.log("Scripts de monitoramento autorizados pelo usuário em conformidade com a LGPD.");
+        function acceptAllCookies() {
+            setConsent({
+                essential: true,
+                analytics: true,
+                date: new Date().toISOString()
+            });
         }
+
+        function savePreferences() {
+            const analytics = document.getElementById('cookieAnalytics').checked;
+            setConsent({
+                essential: true,
+                analytics: analytics,
+                date: new Date().toISOString()
+            });
+        }
+
+        function setConsent(consent) {
+            localStorage.setItem('lgpd_consent', JSON.stringify(consent));
+            cookieBanner.style.display = 'none';
+            console.log('Consentimento LGPD salvo:', consent);
+            // Aqui você dispararia os scripts de analytics se consent.analytics for true
+            if (consent.analytics) {
+                initAnalytics();
+            }
+        }
+
+        function initAnalytics() {
+            console.log('Inicializando scripts de monitoramento autorizados...');
+        }
+
+        window.onload = () => {
+            const savedConsent = localStorage.getItem('lgpd_consent');
+            if (!savedConsent) {
+                setTimeout(() => {
+                    cookieBanner.style.display = 'block';
+                }, 1500);
+            } else {
+                const consent = JSON.parse(savedConsent);
+                if (consent.analytics) initAnalytics();
+            }
+        };
+
+        // --- PROTEÇÃO: BLOQUEIO DE INSPECIONAR ELEMENTO ---
+        
+        // 1. Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) { // F12
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'i'.charCodeAt(0))) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'j'.charCodeAt(0))) {
+                return false;
+            }
+            if (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'u'.charCodeAt(0))) {
+                return false;
+            }
+        };
+
+        // 2. Detectar abertura do DevTools (tentativa básica)
+        let devtools = function() {};
+        devtools.toString = function() {
+            alert("O uso do Inspecionar Elemento está desativado nesta página por motivos de segurança.");
+            return '';
+        }
+        // console.log('%c', devtools); // Comentado para não disparar em alguns navegadores automaticamente
+
     </script>
 </body>
 </html>
