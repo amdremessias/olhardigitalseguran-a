@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Especialistas em segurança eletrônica. Instalação de alarmes, câmeras, cercas elétricas e mais.">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Library for Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/eagledigital.png" type="image/png">
@@ -225,6 +222,7 @@
             cursor: pointer;
             border: none;
             font-size: 0.9rem;
+            text-align: center;
         }
 
         .btn-primary {
@@ -345,8 +343,10 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            padding: 40px;
+            padding: 40px 40px 30px 40px;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card::before {
@@ -376,6 +376,12 @@
             transform: rotateY(360deg);
         }
 
+        .service-card:hover .btn-service {
+            background-color: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
         .service-icon {
             width: 70px;
             height: 70px;
@@ -401,6 +407,120 @@
             color: #666;
             font-size: 0.95rem;
             transition: var(--transition);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn-service {
+            margin-top: auto;
+            background-color: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Modal / Popup de Coleta de Dados */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background-color: #fff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            position: relative;
+            transform: translateY(-30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.4rem;
+            color: #666;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-right: 20px;
+            line-height: 1.3;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
         }
 
         /* Contato */
@@ -628,6 +748,11 @@
                 right: 15px;
                 bottom: 15px;
             }
+            
+            .modal-box {
+                padding: 25px 20px;
+                width: 90%;
+            }
         }
 
         /* Carrossel de Fabricantes */
@@ -760,10 +885,7 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> <!-- Bloqueia botão direito -->
-
-    <!-- Header -->
-    <header id="header">
+<body oncontextmenu="return false;"> <header id="header">
         <div class="container">
             <nav>
                 <a href="#" class="logo-container">
@@ -785,7 +907,6 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section id="hero">
             <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
                 <h1>Sua Segurança é a <span>Nossa Prioridade</span></h1>
@@ -797,7 +918,6 @@
             </div>
         </section>
 
-        <!-- Valores Section -->
         <section id="valores">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
@@ -829,7 +949,6 @@
             </div>
         </section>
 
-        <!-- Serviços Section -->
         <section id="services">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
@@ -837,47 +956,73 @@
                     <p>Proteção completa para sua residência, empresa ou propriedade rural.</p>
                 </div>
                 <div class="services-grid">
-                    <!-- Alarme -->
                     <div class="service-card" data-aos="zoom-in-up" data-aos-delay="100">
                         <div class="service-icon"><i class="fas fa-bell"></i></div>
                         <h3>Instalação de Alarmes</h3>
                         <p>Sistemas personalizados que garantem a detecção e o alerta imediato de intrusos.</p>
+                        <button class="btn-service" onclick="openServiceModal('Instalação de Alarmes')">Solicitar</button>
                     </div>
-                    <!-- Câmeras -->
                     <div class="service-card" data-aos="zoom-in-up" data-aos-delay="200">
                         <div class="service-icon"><i class="fas fa-video"></i></div>
                         <h3>Câmeras de Segurança</h3>
                         <p>Monitoramento 24 horas com câmeras de alta resolução para vigilância completa.</p>
+                        <button class="btn-service" onclick="openServiceModal('Câmeras de Segurança')">Solicitar</button>
                     </div>
-                    <!-- Cerca -->
                     <div class="service-card" data-aos="zoom-in-up" data-aos-delay="300">
                         <div class="service-icon"><i class="fas fa-bolt"></i></div>
                         <h3>Cerca Elétrica</h3>
                         <p>Barreira física e eletrônica para inibir invasões e reforçar a segurança do perímetro.</p>
+                        <button class="btn-service" onclick="openServiceModal('Cerca Elétrica')">Solicitar</button>
                     </div>
-                    <!-- Automatização -->
                     <div class="service-card" data-aos="zoom-in-up" data-aos-delay="400">
                         <div class="service-icon"><i class="fas fa-gears"></i></div>
                         <h3>Automatização</h3>
                         <p>Controle de portões e acesso com sistemas automatizados para maior comodidade.</p>
+                        <button class="btn-service" onclick="openServiceModal('Automatização')">Solicitar</button>
                     </div>
-                    <!-- Interfones -->
                     <div class="service-card" data-aos="zoom-in-up" data-aos-delay="500">
                         <div class="service-icon"><i class="fas fa-phone-volume"></i></div>
                         <h3>Interfones</h3>
                         <p>Soluções de comunicação para controle de entrada residencial e condominial.</p>
+                        <button class="btn-service" onclick="openServiceModal('Interfones')">Solicitar</button>
                     </div>
-                    <!-- Eletricista -->
                     <div class="service-card" data-aos="zoom-in-up" data-aos-delay="600">
                         <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
                         <h3>Eletricista</h3>
                         <p>Serviços elétricos especializados para garantir a instalação segura dos sistemas.</p>
+                        <button class="btn-service" onclick="openServiceModal('Eletricista')">Solicitar</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Galeria Section -->
+        <div class="modal-overlay" id="serviceModal" onclick="closeServiceModal(event)">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <div class="modal-close" onclick="closeServiceModal(null)"><i class="fas fa-times"></i></div>
+                <h3 id="modalTitle">Solicitação de Serviço</h3>
+                <form id="serviceForm" onsubmit="handleFormSubmit(event)">
+                    <input type="hidden" id="selectedService">
+                    <div class="form-group">
+                        <label for="clientName">Nome Completo *</label>
+                        <input type="text" id="clientName" required placeholder="Ex: João Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">WhatsApp (com DDD) *</label>
+                        <input type="text" id="clientPhone" required placeholder="(00) 00000-0000" maxlength="15" oninput="maskPhone(this)">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientCity">Cidade *</label>
+                        <input type="text" id="clientCity" required placeholder="Ex: Ourinhos - SP">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientDescription">Descrição do Pedido *</label>
+                        <textarea id="clientDescription" required placeholder="Descreva brevemente o que precisa..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar para o WhatsApp</button>
+                </form>
+            </div>
+        </div>
+
         <section id="portfolio">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
@@ -929,7 +1074,6 @@
             </div>
         </section>
 
-        <!-- Fabricantes Section -->
         <section id="partners" style="padding: 60px 0; background: #fff;">
             <div class="container">
                 <div class="section-header" data-aos="fade-up" style="margin-bottom: 40px;">
@@ -939,14 +1083,12 @@
             </div>
             <div class="manufacturers-slider">
                 <div class="slider-track">
-                <!-- Logos (Duplicados para loop infinito) -->
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/IntelbrasLogo.png" alt="Intelbras"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/controlid.png" alt="Control iD"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/garen.png" alt="Garen"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/hikvision.png" alt="Hikvision"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/jfl.jpg" alt="JFL"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/ppa.jpg" alt="PPA"></div>
-                <!-- Repetição para o loop -->
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/IntelbrasLogo.png" alt="Intelbras"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/controlid.png" alt="Control iD"></div>
                 <div class="slide"><img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/fabricantes/garen.png" alt="Garen"></div>
@@ -957,7 +1099,6 @@
         </div>
         </section>
 
-        <!-- Contato Section -->
         <section id="contact">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
@@ -975,7 +1116,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1006,7 +1146,6 @@
         </div>
     </footer>
 
-    <!-- LGPD Cookie Banner -->
     <div class="cookie-banner" id="cookieBanner">
         <h3><i class="fas fa-cookie-bite"></i> Gestão de Privacidade</h3>
         <p>Utilizamos cookies para garantir o funcionamento do site e melhorar sua experiência. Em conformidade com a <strong>LGPD</strong>, você pode escolher quais cookies deseja permitir.</p>
@@ -1030,7 +1169,6 @@
         <p style="font-size: 0.75rem; margin-top: 15px; margin-bottom: 0;">Consulte nossa <a href="privacidade.html">Política de Privacidade</a>.</p>
     </div>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Inicializar Animações
@@ -1109,7 +1247,6 @@
             localStorage.setItem('lgpd_consent', JSON.stringify(consent));
             cookieBanner.style.display = 'none';
             console.log('Consentimento LGPD salvo:', consent);
-            // Aqui você dispararia os scripts de analytics se consent.analytics for true
             if (consent.analytics) {
                 initAnalytics();
             }
@@ -1131,11 +1268,75 @@
             }
         };
 
+        // --- LÓGICA DO MODAL DE SERVIÇOS INTEGRADAS ---
+        const modal = document.getElementById('serviceModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const selectedServiceInput = document.getElementById('selectedService');
+        const serviceForm = document.getElementById('serviceForm');
+
+        function openServiceModal(serviceName) {
+            modalTitle.textContent = `Solicitação: ${serviceName}`;
+            selectedServiceInput.value = serviceName;
+            modal.classList.add('active');
+        }
+
+        function closeServiceModal(e) {
+            if (e === null || e.target === modal) {
+                modal.classList.remove('active');
+                serviceForm.reset();
+            }
+        }
+
+        function maskPhone(input) {
+            let v = input.value.replace(/\D/g, ""); // Remove tudo que não for dígito
+            if (v.length > 11) v = v.substring(0, 11); // Corta em 11 dígitos
+            
+            // Aplica a máscara visual regulada
+            if (v.length > 6) {
+                input.value = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+            } else if (v.length > 2) {
+                input.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+            } else if (v.length > 0) {
+                input.value = `(${v}`;
+            } else {
+                input.value = "";
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const service = selectedServiceInput.value;
+            const name = document.getElementById('clientName').value.trim();
+            const rawPhone = document.getElementById('clientPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('clientCity').value.trim();
+            const description = document.getElementById('clientDescription').value.trim();
+
+            if (rawPhone.length !== 11) {
+                alert("Por favor, digite um número de WhatsApp válido contendo o DDD + 9 dígitos (Total de 11 números).");
+                return;
+            }
+
+            // Estrutura organizada da mensagem para envio limpo
+            const text = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
+                         `🛠️ *Serviço:* ${service}\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Descrição do Pedido:* ${description}`;
+
+            const encodedText = encodeURIComponent(text);
+            const whatsappNumber = "5514998160878";
+            
+            modal.classList.remove('active');
+            serviceForm.reset();
+            
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedText}`, '_blank');
+        }
+
         // --- PROTEÇÃO: BLOQUEIO DE INSPECIONAR ELEMENTO ---
-        
-        // 1. Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
         document.onkeydown = function(e) {
-            if (e.keyCode == 123) { // F12
+            if (e.keyCode == 123) { 
                 return false;
             }
             if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'i'.charCodeAt(0))) {
@@ -1149,14 +1350,11 @@
             }
         };
 
-        // 2. Detectar abertura do DevTools (tentativa básica)
         let devtools = function() {};
         devtools.toString = function() {
             alert("O uso do Inspecionar Elemento está desativado nesta página por motivos de segurança.");
             return '';
         }
-        // console.log('%c', devtools); // Comentado para não disparar em alguns navegadores automaticamente
-
     </script>
 </body>
 </html>
