@@ -1318,8 +1318,10 @@
             const svg = document.createElementNS(svgNS, "svg");
             svg.setAttribute("viewBox", "0 0 696 316");
             svg.setAttribute("fill", "none");
+            svg.style.pointerEvents = "none";
             
-            for (let i = 0; i < 36; i++) {
+            // Reduced from 36 to 16 to dramatically improve performance and prevent browser freezing
+            for (let i = 0; i < 16; i++) {
                 const path = document.createElementNS(svgNS, "path");
                 const d = `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`;
                 
@@ -1359,7 +1361,6 @@
                     letterSpan.className = 'animated-letter';
                     if (item.gradient) letterSpan.classList.add('text-gradient');
                     letterSpan.innerText = letter;
-                    // Framer-motion delay logic replica
                     letterSpan.style.animationDelay = `${wordIndex * 0.1 + letterIndex * 0.03}s`;
                     wordSpan.appendChild(letterSpan);
                 });
@@ -1368,16 +1369,17 @@
             });
         }
 
-        // Initialize Hero Animations
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize Hero Animations directly since script is at the end of body
+        (function initHero() {
             const heroBg = document.createElement("div");
             heroBg.className = "hero-bg-paths";
             heroBg.appendChild(createFloatingPaths(1));
             heroBg.appendChild(createFloatingPaths(-1));
-            document.getElementById("hero").prepend(heroBg);
+            const heroSection = document.getElementById("hero");
+            if(heroSection) heroSection.prepend(heroBg);
             
             generateAnimatedTitle();
-        });
+        })();
     </script>
 </body>
 </html>
