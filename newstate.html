@@ -236,70 +236,6 @@
             margin-right: auto;
         }
 
-        /* Hero Animated Background */
-        .hero-bg-paths {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .hero-bg-paths svg {
-            width: 100%;
-            height: 100%;
-            color: #fff;
-        }
-
-        .floating-path {
-            stroke: currentColor;
-            fill: none;
-            stroke-dasharray: 0.3 1;
-            animation: dashAnim linear infinite;
-        }
-
-        @keyframes dashAnim {
-            0% {
-                stroke-dashoffset: 1;
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 0.6;
-            }
-            100% {
-                stroke-dashoffset: 0;
-                opacity: 0.3;
-            }
-        }
-
-        /* Animated Title Letters */
-        .animated-word {
-            display: inline-block;
-            margin-right: 15px;
-            white-space: nowrap;
-        }
-        
-        .animated-letter {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(80px);
-            animation: springUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes springUp {
-            0% {
-                opacity: 0;
-                transform: translateY(80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Hero Button New Design (Discover Excellence) */
         .hero-button-group {
             display: inline-block;
@@ -932,10 +868,10 @@
     <main>
         <section id="hero">
             <div class="hero-content" style="position: relative; z-index: 2;">
-                <h1 id="hero-title" style="margin-bottom: 30px;"></h1>
-                <p data-aos="fade-up" data-aos-delay="600">Tecnologia de ponta e design inovador para proteger o seu patrimônio com a sofisticação que você merece.</p>
+                <h1 id="hero-title" style="margin-bottom: 30px;">Segurança de <span class="text-gradient">Alto Padrão</span></h1>
+                <p>Tecnologia de ponta e design inovador para proteger o seu patrimônio com a sofisticação que você merece.</p>
                 
-                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="800" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <div class="cta-buttons" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                     <div class="hero-button-group">
                         <a href="#services" class="btn-discover">
                             <span class="btn-discover-text">Nossos Serviços</span>
@@ -1308,85 +1244,16 @@
             const description = document.getElementById('clientDescription').value;
             
             const rawPhone = phone.replace(/\D/g, "");
-            const text = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
-                         `🛠️ *Serviço:* ${service}\n` +
-                         `👤 *Nome:* ${name}\n` +
-                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
-                         `📍 *Cidade:* ${city}\n\n` +
-                         `📝 *Descrição:* ${description}`;
+            const text = `*NOVA SOLICITA\u{c7}\u{c3}O DE SERVI\u{c7}O* \u{1f6e1}\u{fe0f}\n\n` +
+                         `\u{1f6e0}\u{fe0f} *Servi\u{e7}o:* ${service}\n` +
+                         `\u{1f464} *Nome:* ${name}\n` +
+                         `\u{1f4f1} *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `\u{1f4cd} *Cidade:* ${city}\n\n` +
+                         `\u{1f4dd} *Descri\u{e7}\u{e3}o:* ${description}`;
             
             window.open('https://wa.me/5514998160878?text=' + encodeURIComponent(text), '_blank');
             closeServiceModal(null);
         }
-
-        // SVG Background Paths Animation Logic (Vanilla JS version of the React component)
-        function createFloatingPaths(position) {
-            const svgNS = "http://www.w3.org/2000/svg";
-            const svg = document.createElementNS(svgNS, "svg");
-            svg.setAttribute("viewBox", "0 0 696 316");
-            svg.setAttribute("fill", "none");
-            svg.style.pointerEvents = "none";
-            
-            // Reduced from 36 to 16 to dramatically improve performance and prevent browser freezing
-            for (let i = 0; i < 16; i++) {
-                const path = document.createElementNS(svgNS, "path");
-                const d = `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`;
-                
-                path.setAttribute("d", d);
-                path.setAttribute("stroke", "currentColor");
-                path.setAttribute("stroke-width", 0.5 + i * 0.03);
-                path.setAttribute("stroke-opacity", 0.1 + i * 0.03);
-                path.setAttribute("pathLength", "1");
-                path.classList.add("floating-path");
-                
-                const duration = 20 + Math.random() * 10;
-                path.style.animationDuration = `${duration}s`;
-                
-                svg.appendChild(path);
-            }
-            return svg;
-        }
-
-        // Animated Title Logic
-        function generateAnimatedTitle() {
-            const titleContainer = document.getElementById('hero-title');
-            if(!titleContainer) return;
-            
-            const wordsObj = [
-                {text: "Segurança", gradient: false},
-                {text: "de", gradient: false},
-                {text: "Alto", gradient: true},
-                {text: "Padrão", gradient: true}
-            ];
-            
-            wordsObj.forEach((item, wordIndex) => {
-                const wordSpan = document.createElement('span');
-                wordSpan.className = 'animated-word';
-                
-                item.text.split('').forEach((letter, letterIndex) => {
-                    const letterSpan = document.createElement('span');
-                    letterSpan.className = 'animated-letter';
-                    if (item.gradient) letterSpan.classList.add('text-gradient');
-                    letterSpan.innerText = letter;
-                    letterSpan.style.animationDelay = `${wordIndex * 0.1 + letterIndex * 0.03}s`;
-                    wordSpan.appendChild(letterSpan);
-                });
-                titleContainer.appendChild(wordSpan);
-                titleContainer.appendChild(document.createTextNode(' '));
-            });
-        }
-
-        // Initialize Hero Animations directly since script is at the end of body
-        (function initHero() {
-            const heroBg = document.createElement("div");
-            heroBg.className = "hero-bg-paths";
-            heroBg.appendChild(createFloatingPaths(1));
-            heroBg.appendChild(createFloatingPaths(-1));
-            const heroSection = document.getElementById("hero");
-            if(heroSection) heroSection.prepend(heroBg);
-            
-            generateAnimatedTitle();
-        })();
     </script>
 </body>
 </html>
