@@ -1037,7 +1037,7 @@
                     <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px;">Linha Direta de Atendimento:</p>
                     <a href="tel:14998160878" style="font-family: 'Outfit'; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: #fff; text-decoration: none; display: block; margin-bottom: 40px; text-shadow: var(--glow);">(14) 99816-0878</a>
                     <a href="https://wa.me/5514998160878" target="_blank" class="btn btn-primary" style="padding: 20px 50px; font-size: 1rem;">
-                        <i class="fab fa-whatsapp" style="margin-right: 10px; font-size: 1.2rem;"></i> WhatsApp Concierge
+                        <i class="fab fa-whatsapp" style="margin-right: 10px; font-size: 1.2rem;"></i> WhatsApp
                     </a>
                 </div>
             </div>
@@ -1057,6 +1057,7 @@
                         <li><a href="privacidade.html">Política de Privacidade</a></li>
                         <li><a href="termos.html">Termos de Serviço</a></li>
                         <li><a href="cookies.html">Gestão de Cookies</a></li>
+                        <li><a href="titulares.html">Direitos do Titular</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -1244,13 +1245,12 @@
             const description = document.getElementById('clientDescription').value;
             
             const rawPhone = phone.replace(/\D/g, "");
-            const text = `*NOVA SOLICITA\u{c7}\u{c3}O DE SERVI\u{c7}O* \u{1f6e1}\u{fe0f}\n\n` +
-                         `\u{1f6e0}\u{fe0f} *Servi\u{e7}o:* ${service}\n` +
-                         `\u{1f464} *Nome:* ${name}\n` +
-                         `\u{1f4f1} *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
-                         `\u{1f4cd} *Cidade:* ${city}\n\n` +
-                         `\u{1f4dd} *Descri\u{e7}\u{e3}o:* ${description}`;
-            
+            const text = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
+                         `🛠️ *Serviço:* ${service}\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Descrição:* ${description}`;
             window.open('https://wa.me/5514998160878?text=' + encodeURIComponent(text), '_blank');
             closeServiceModal(null);
         }
