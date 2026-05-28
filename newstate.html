@@ -1305,9 +1305,16 @@
             const name = document.getElementById('clientName').value;
             const phone = document.getElementById('clientPhone').value;
             const city = document.getElementById('clientCity').value;
-            const desc = document.getElementById('clientDescription').value;
+            const description = document.getElementById('clientDescription').value;
             
-            const text = `Olá! Gostaria de uma consultoria premium para o serviço de *${service}*.\n\n*Nome:* ${name}\n*Telefone:* ${phone}\n*Cidade:* ${city}\n*Detalhes do Projeto:* ${desc}`;
+            const rawPhone = phone.replace(/\D/g, "");
+            const text = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
+                         `🛠️ *Serviço:* ${service}\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Descrição:* ${description}`;
+            
             window.open('https://wa.me/5514998160878?text=' + encodeURIComponent(text), '_blank');
             closeServiceModal(null);
         }
