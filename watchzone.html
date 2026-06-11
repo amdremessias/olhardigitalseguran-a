@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'cookie_domain': window.location.hostname.includes('netlify.app') ? window.location.hostname : 'auto'
+        });
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Olhar Digital - Monitoramento Inteligente por Vídeo com IA, Segurança Eletrônica e Integração Avançada.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/eagledigital.png" type="image/png">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <title>OLHAR DIGITAL | Monitoramento Inteligente por Vídeo</title>
+    
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #022846;
+            --accent: #0AFF0A;
+            --accent-glow: rgba(10, 255, 10, 0.3);
+            --bg: #020b14;
+            --surface: rgba(2, 40, 70, 0.4);
+            --surface-bright: rgba(2, 40, 70, 0.7);
+            --text: #FFFFFF;
+            --text-dim: #b0c4de;
+            --border: rgba(76, 175, 80, 0.2);
+            --gradient: linear-gradient(135deg, #4CAF50 0%, #00CCFF 100%);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND DINÂMICO --- */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(2, 40, 70, 0.5) 0%, transparent 50%);
+            overflow: hidden;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/OIP-619504664.jpg') center/cover no-repeat;
+            opacity: 0.06;
+            filter: grayscale(1) brightness(0.4);
+        }
+
+        /* PARTÍCULAS */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.15;
+            filter: blur(1px);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(110vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.3; }
+            to { transform: translateY(-10vh) translateX(100px); opacity: 0; }
+        }
+
+        /* --- ANIMAÇÕES DE REVEAL --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(2, 22, 39, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .header-logo-img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.4));
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 1.5rem 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.3rem, 6vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-dim);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-feature-item {
+            text-align: left;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-feature-item:hover {
+            border-color: var(--primary);
+            background: var(--surface-bright);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .hero-feature-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #fff;
+        }
+
+        .hero-feature-item h4 i {
+            color: var(--primary);
+        }
+
+        .hero-feature-item p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 0;
+        }
+
+        /* --- SEÇÕES PADRÃO --- */
+        section { 
+            padding: 100px 1.5rem; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+        }
+        
+        .section-title-wrapper { 
+            text-align: center; 
+            margin-bottom: 5rem;
+        }
+        
+        .section-title-wrapper h2 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem; 
+            text-transform: uppercase;
+        }
+        
+        .section-title-wrapper h2 span { 
+            background: var(--gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title-wrapper p { 
+            color: var(--text-dim); 
+            max-width: 700px; 
+            margin: 0 auto;
+        }
+
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem;
+        }
+        
+        .info-card { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            padding: 3rem 2.5rem;
+            border-radius: 32px; 
+            transition: 0.4s; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        .info-card:hover { 
+            border-color: var(--primary);
+            background: var(--surface-bright); 
+            transform: translateY(-8px); 
+        }
+        
+        .info-card h3 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem; 
+            color: var(--primary); 
+            margin-bottom: 1.2rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.8rem;
+        }
+        
+        .info-card p { 
+            color: var(--text-dim); 
+            font-size: 1rem; 
+            line-height: 1.8;
+        }
+        
+        .info-card ul { 
+            list-style: none; 
+            margin-top: 1.5rem;
+        }
+        
+        .info-card ul li { 
+            margin-bottom: 0.8rem; 
+            padding-left: 1.5rem; 
+            position: relative; 
+            color: var(--text-dim);
+            font-size: 0.95rem; 
+        }
+        
+        .info-card ul li::before { 
+            content: "→"; 
+            position: absolute; 
+            left: 0;
+            color: var(--primary); 
+            font-weight: bold; 
+        }
+
+        /* COMO FUNCIONA */
+        .step-grid { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 3rem; 
+        }
+        
+        .step-card { 
+            text-align: center;
+            padding: 2rem; 
+        }
+        
+        .step-number { 
+            width: 50px; 
+            height: 50px; 
+            background: var(--gradient); 
+            color: #000;
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            font-size: 1.5rem; 
+            margin: 0 auto 1.5rem;
+        }
+
+        /* PLANOS */
+        .plans-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 2rem; 
+        }
+        
+        .plan-card { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            padding: 4rem 3rem; 
+            border-radius: 40px;
+            text-align: center; 
+            transition: 0.4s; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .plan-card.featured { 
+            border-color: rgba(76, 175, 80, 0.5);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(76, 175, 80, 0.02) 100%); 
+            transform: scale(1.05); 
+            z-index: 2; 
+        }
+        
+        .plan-card:hover { 
+            border-color: var(--primary); 
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .plan-card.featured:hover { 
+            transform: translateY(-10px) scale(1.07); 
+        }
+        
+        .plan-price { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 3rem; 
+            font-weight: 800; 
+            color: var(--primary);
+            margin: 1.5rem 0; 
+        }
+        
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 1.2rem 2.5rem; 
+            border-radius: 100px; 
+            font-weight: 700;
+            transition: 0.4s; 
+            font-size: 1rem; 
+            border: none; 
+            cursor: pointer; 
+            width: 100%; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-accent { 
+            background: var(--primary); 
+            color: #fff;
+        }
+        
+        .btn-accent:hover { 
+            background: var(--primary-dark); 
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); 
+        }
+        
+        .btn-outline { 
+            background: transparent; 
+            color: #fff;
+            border: 1px solid var(--border); 
+        }
+        
+        .btn-outline:hover { 
+            background: var(--surface); 
+            border-color: #fff;
+        }
+
+        /* --- POPUP OTIMIZADO DO SWAL --- */
+        .custom-swal-popup {
+            background: #021627 !important;
+            border: 1px solid rgba(76, 175, 80, 0.3) !important;
+            border-radius: 24px !important;
+            padding: 2rem 1.5rem !important;
+            width: 100% !important;
+            max-width: 450px !important;
+        }
+        
+        .custom-swal-title {
+            color: #fff !important;
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1.3 !important;
+        }
+        
+        .custom-swal-html {
+            margin: 1.5rem 0 0 0 !important;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .custom-swal-input {
+            width: 100% !important;
+            height: 50px !important;
+            margin: 0 !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(76, 175, 80, 0.2) !important;
+            color: #fff !important;
+            border-radius: 12px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 16px !important;
+            padding: 0 1rem !important;
+            box-sizing: border-box !important;
+            outline: none !important;
+        }
+        
+        .custom-swal-input:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2) !important;
+        }
+        
+        .custom-swal-textarea {
+            width: 100% !important;
+            min-height: 80px !important;
+            margin: 0 !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(76, 175, 80, 0.2) !important;
+            color: #fff !important;
+            border-radius: 12px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 16px !important;
+            padding: 0.8rem 1rem !important;
+            box-sizing: border-box !important;
+            outline: none !important;
+            resize: none !important;
+        }
+        
+        .custom-swal-textarea:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2) !important;
+        }
+        
+        .custom-swal-confirm {
+            background-color: #25D366 !important;
+            color: #fff !important;
+            border-radius: 12px !important;
+            padding: 0.8rem 2rem !important;
+            font-weight: 700 !important;
+            font-size: 1rem !important;
+            text-transform: uppercase !important;
+            width: 100% !important;
+            margin-top: 1rem !important;
+        }
+
+        /* --- CONTATO E FOOTER --- */
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        footer {
+            background: #011627;
+            padding: 80px 1.5rem 30px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+        }
+        
+        .footer-col h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        
+        .footer-col p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* BANNER COOKIE */
+        .cookie-banner {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: #022846;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 20px;
+            max-width: 400px;
+            z-index: 9999;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            display: none;
+        }
+        
+        .cookie-banner.active {
+            display: block;
+        }
+        
+        .cookie-banner p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+        
+        .cookie-banner button {
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+
+    <header id="header">
+        <nav>
+            <a href="#" class="logo-container">
+                <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/eagledigital.png" alt="Olhar Digital Logo" class="header-logo-img">
+                <div class="logo-text">Olhar<span>Digital</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#tecnologia">Tecnologia</a></li>
+                <li><a href="#funcionamento">Como Funciona</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Monitoramento Inteligente <span>Por Vídeo com IA</span></h1>
+            <p>Transforme suas câmeras comuns em um sistema de segurança preditivo com inteligência artificial e centralização em nuvem local de alta performance.</p>
+            <div class="hero-features">
+                <div class="hero-feature-item">
+                    <h4><i class="fa-solid fa-brain"></i> IA Avançada Integrada</h4>
+                    <p>Filtro inteligente de humanos e veículos eliminando até 99% dos alarmes falsos causados por chuva, vento ou animais.</p>
+                </div>
+                <div class="hero-feature-item">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Monitoramento Ativo</h4>
+                    <p>Alertas em tempo real com imagens direto no seu dispositivo assim que uma ameaça real ultrapassar os limites definidos.</p>
+                </div>
+                <div class="hero-feature-item">
+                    <h4><i class="fa-solid fa-house-laptop"></i> Ecossistema Unificado</h4>
+                    <p>Integração total e flexível com Home Assistant e plataformas de automação inteligente residenciais e corporativas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologia" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Tecnologia <span>Aplicada</span></h2>
+                <p>Nossa engenharia combina o melhor do processamento local e centralizado para blindar sua estrutura.</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-eye"></i> Análise de Vídeo Computacional</h3>
+                    <p>Cercas virtuais inteligentes e zonas de intrusão desenhadas sob medida. O sistema identifica comportamentos suspeitos e ativa contra-medidas antes mesmo que a invasão ocorra.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-server"></i> Infraestrutura Local e Nuvem</h3>
+                    <p>Seus dados protegidos e armazenados com criptografia ponta a ponta. Gravação contínua redundante que garante o acesso aos eventos mesmo sob queda de internet externa.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-bell"></i> Central de Notificação Express</h3>
+                    <p>Receba clipes de vídeo resumidos direto no celular. Sem necessidade de vasculhar horas de gravação: a IA entrega o momento exato do evento importante.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="funcionamento" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Como <span>Funciona</span></h2>
+                <p>A implantação do sistema Olhar Digital é rápida, limpa e altamente escalável.</p>
+            </div>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Mapeamento</h4>
+                    <p>Análise técnica detalhada da infraestrutura atual de câmeras e pontos vulneráveis do perímetro.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>Conexão</h4>
+                    <p>Integração dos streams de vídeo à nossa central de processamento inteligente e ativação das instâncias de IA.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Calibragem</h4>
+                    <p>Ajuste fino dos algoritmos de detecção baseando-se na rotina diária do local para máxima precisão.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>Proteção</h4>
+                    <p>Pronto! Sistema operando 24h por dia com notificações automáticas integradas diretamente ao seu alcance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="reveal">
+            <div class="section-title-wrapper">
+                <h2>Nossos <span>Planos</span></h2>
+                <p>Escolha a escala ideal de proteção inteligente para sua residência ou empresa.</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h4>Olhar Residencial</h4>
+                    <p>Inteligência essencial para residências e pequenos comércios.</p>
+                    <div class="plan-price">R$ 49<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
+                    <ul style="list-style: none; text-align: left; margin-bottom: 2rem; color: var(--text-dim);">
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Até 4 Câmeras com IA</li>
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Detecção Humano/Veículo</li>
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Notificações via WhatsApp</li>
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Retenção de Alertas por 7 dias</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openOrderModal('Olhar Residencial')">Solicitar Ativação</button>
+                </div>
+                <div class="plan-card featured">
+                    <h4 style="color: var(--primary);">Olhar Pro</h4>
+                    <p>Monitoramento avançado para médias empresas e condomínios de alta segurança.</p>
+                    <div class="plan-price">R$ 99<span style="font-size: 1rem; color: var(--text-dim);">/mês</span></div>
+                    <ul style="list-style: none; text-align: left; margin-bottom: 2rem; color: var(--text-dim);">
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Até 8 Câmeras Inteligentes</li>
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Análise Comportamental Avançada</li>
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Integração Home Assistant Premium</li>
+                        <li style="margin-bottom: .5rem;"><i class="fa-solid fa-check" style="color: var(--primary);"></i> Suporte Técnico Prioritário 24/7</li>
+                    </ul>
+                    <button class="btn btn-accent" onclick="openOrderModal('Olhar Pro')">Contratar Agora</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">Olhar<span>Digital</span></div>
+                <p>Especialistas em segurança eletrônica preditiva. Protegendo seu patrimônio utilizando tecnologia de ponta, inteligência de dados e automação estratégica.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <p><a href="#tecnologia" style="color: var(--text-dim); text-decoration: none; display: block; margin-bottom: .5rem;">Tecnologia</a></p>
+                <p><a href="#funcionamento" style="color: var(--text-dim); text-decoration: none; display: block; margin-bottom: .5rem;">Como Funciona</a></p>
+                <p><a href="#planos" style="color: var(--text-dim); text-decoration: none; display: block; margin-bottom: .5rem;">Planos</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contato Direto</h4>
+                <p style="margin-bottom: .5rem;"><i class="fa-solid fa-phone" style="color: var(--primary);"></i> (14) 99816-0878</p>
+                <p style="margin-bottom: .5rem;"><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> suporte@olhardigital.io</p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> Ourinhos, SP - Atendimento Nacional</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 OLHAR DIGITAL SEGURANÇA ELETRÔNICA. Todos os direitos reservados.</p>
+            <p style="font-size: 0.75rem; margin-top: 0.5rem; color: rgba(255,255,255,0.2);">Conformidade com a LGPD aplicada. Encarregado de Proteção de Dados (DPO): dpo@olhardigital.io</p>
+        </div>
+    </footer>
+
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Utilizamos cookies e tecnologias analíticas para otimizar sua experiência de navegação em conformidade total com a LGPD. Ao continuar, você concorda com nossa política.</p>
+        <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-accent" style="padding: 0.4rem 1rem; font-size: 0.75rem;" onclick="respondCookies(true)">Aceitar</button>
+            <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;" onclick="respondCookies(false)">Recusar</button>
+        </div>
+    </div>
+
+    <script>
+        // --- GERADOR DE PARTÍCULAS DE FUNDO ---
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const count = 20;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * -10}s`;
+                container.appendChild(particle);
+            }
+        }
+
+        // --- CONTROLE DE ROLAGEM E REVEAL ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+            reveal();
+        });
+
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) el.classList.add('active');
+            });
+        }
+
+        // --- POPUP INTERATIVO E FORMATADOR DE ENVIO VIA WHATSAPP ---
+        const openOrderModal = (planName) => {
+            Swal.fire({
+                title: `Ativação do Plano: ${planName}`,
+                html: `
+                    <div class="custom-swal-html">
+                        <input id="swal-name" class="custom-swal-input" placeholder="Seu nome completo" autocomplete="off">
+                        <input id="swal-phone" class="custom-swal-input" placeholder="WhatsApp com DDD (somente números)" type="tel" maxlength="11">
+                        <input id="swal-city" class="custom-swal-input" placeholder="Sua Cidade - UF" autocomplete="off">
+                        <textarea id="swal-desc" class="custom-swal-textarea" placeholder="Descreva brevemente sua estrutura ou necessidade atual..."></textarea>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Enviar via WhatsApp 📞',
+                cancelButtonText: 'Voltar',
+                confirmButtonColor: '#25D366',
+                cancelButtonColor: '#d33',
+                customClass: {
+                    popup: 'custom-swal-popup',
+                    title: 'custom-swal-title',
+                    confirmButton: 'custom-swal-confirm'
+                },
+                didOpen: () => {
+                    const phoneInput = document.getElementById('swal-phone');
+                    phoneInput.addEventListener('input', (e) => {
+                        e.target.value = e.target.value.replace(/\D/g, '');
+                    });
+                },
+                preConfirm: () => {
+                    const name = document.getElementById('swal-name').value.trim();
+                    const phone = document.getElementById('swal-phone').value.trim();
+                    const city = document.getElementById('swal-city').value.trim();
+                    const desc = document.getElementById('swal-desc').value.trim();
+
+                    if (!name || !phone || !city) {
+                        Swal.showValidationMessage('Por favor, preencha Nome, WhatsApp e Cidade!');
+                        return false;
+                    }
+                    if (phone.length !== 11) {
+                        Swal.showValidationMessage('Insira um número de WhatsApp válido com 11 dígitos (DDD + 9).');
+                        return false;
+                    }
+
+                    return { name, phone, city, description: desc };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { name, phone, city, description } = result.value;
+                    
+                    // --- MONTAGEM DA MENSAGEM FORMATADA ---
+                    const textoMsg = `*NOVA SOLICITAÇÃO DE SERVIÇO* 🛡️\n\n` +
+                                     `🛠️ *Plano Escolhido:* ${planName}\n` +
+                                     `👤 *Nome:* ${name}\n` +
+                                     `📱 *WhatsApp:* (${phone.substring(0,2)}) ${phone.substring(2,7)}-${phone.substring(7)}\n` +
+                                     `📍 *Cidade:* ${city}\n\n` +
+                                     `📝 *Descrição:* ${description ? description : 'Nenhuma informação adicional fornecida.'}`;
+
+                    const textoEncoded = encodeURIComponent(textoMsg);
+                    // URL de destino configurada para o WhatsApp de atendimento fornecido na referência
+                    const linkWhatsapp = `https://wa.me/5514998160878?text=${textoEncoded}`;
+                    
+                    window.open(linkWhatsapp, '_blank');
+                }
+            });
+        };
+
+        // --- SEGURANÇA CONTRA INSPEÇÃO E COPIA DE TEXTO ---
+        document.onkeydown = (e) => { 
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 67))) return false; 
+        };
+        document.addEventListener('copy', (e) => { e.preventDefault(); return false; });
+
+        // --- CONSENTIMENTO DE COOKIES LGPD ---
+        function respondCookies(accept) { 
+            localStorage.setItem('lgpd_consent', accept ? 'accepted_all' : 'rejected'); 
+            document.getElementById('cookieBanner').classList.remove('active'); 
+        }
+
+        // --- INICIALIZAÇÃO DA PÁGINA ---
+        window.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            reveal();
+            if (!localStorage.getItem('lgpd_consent')) {
+                setTimeout(() => {
+                    document.getElementById('cookieBanner').classList.add('active');
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
