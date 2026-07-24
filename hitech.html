@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Comparativo FI-FO: Câmeras IP de Alta Tecnologia vs. Câmeras Analógicas Legadas. Entenda o impacto no seu projeto de segurança.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/eagledigital.png" type="image/png">
+    <title>OLHAR DIGITAL | Câmeras IP vs. Analógicas Legadas (Análise FI-FO)</title>
+    <script defer src="https://umami-lab.duckdns.org/script.js" data-website-id="348abf33-5883-464e-b7f9-2f872dc1ee6f"></script>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #022846;
+            --accent: #0AFF0A;
+            --text-dark: #1a1a1a;
+            --text-light: #f4f4f4;
+            --bg-light: #ffffff;
+            --bg-gray: #f8f9fa;
+            --danger: #e53935;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            width: 100%;
+            user-select: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(2, 40, 70, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: var(--secondary);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .header-logo-img {
+            height: 45px;
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.3));
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 75vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
+                        url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+            width: 100%;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 950px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            min-height: 48px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 90px 0;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0 10px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+        }
+
+        /* FI-FO Concept Cards */
+        .fifo-intro {
+            background-color: var(--bg-gray);
+        }
+
+        .fifo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .fifo-card {
+            background: #fff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .fifo-card.fit-out {
+            border-left-color: var(--danger);
+        }
+
+        .fifo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fifo-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .badge-in { background-color: var(--primary); }
+        .badge-out { background-color: var(--danger); }
+
+        .fifo-card h3 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .fifo-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Grid de Comparativos Tec */
+        .tech-comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tech-column {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+        }
+
+        .tech-column.ip-tech {
+            border-top: 6px solid var(--primary);
+        }
+
+        .tech-column.analog-tech {
+            border-top: 6px solid #888;
+        }
+
+        .tech-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tech-header i {
+            font-size: 2rem;
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ip-tech .tech-header i {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary);
+        }
+
+        .analog-tech .tech-header i {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .tech-header h3 {
+            font-size: 1.35rem;
+            color: var(--secondary);
+        }
+
+        .points-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .points-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .points-list li i {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            font-size: 1rem;
+        }
+
+        .list-strong .fa-circle-check { color: var(--primary); }
+        .list-weak .fa-circle-xmark { color: var(--danger); }
+        .list-neutral .fa-circle-minus { color: #888; }
+
+        .list-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--secondary);
+            margin: 20px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Tabela Comparativa Estilizada */
+        .table-section {
+            background-color: var(--bg-gray);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 650px;
+        }
+
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 18px 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background-color: var(--secondary);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .badge-table {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .badge-high { background: rgba(76, 175, 80, 0.15); color: var(--primary-dark); }
+        .badge-low { background: rgba(229, 57, 53, 0.15); color: var(--danger); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 15px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background-color: #fff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            position: relative;
+            transform: translateY(-30px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.3rem;
+            color: #666;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .modal-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px; 
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 85px;
+        }
+
+        /* Contato */
+        #contact {
+            background: linear-gradient(rgba(2, 40, 70, 0.92), rgba(2, 40, 70, 0.92)), 
+                        url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        #contact .section-header h2 { color: #fff; }
+        #contact .section-header p { color: #ccc; }
+
+        .contact-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            border-radius: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .phone-number {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin: 15px 0 30px;
+            display: block;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #011627;
+            color: #fff;
+            padding: 60px 0 30px;
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 35px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after, .footer-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 12px; }
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            color: #ccc;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact i { color: var(--primary); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .mobile-menu-btn { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background-color: var(--secondary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease;
+                z-index: 999;
+            }
+            .nav-links.active { right: 0; }
+            .tech-comparison-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            section { padding: 60px 0; }
+            .tech-column { padding: 20px; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo-container">
+                    <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Olhar Digital" class="header-logo-img">
+                    <div class="logo-text">Olhar<span>Digital</span></div>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#conceito">Conceito FI-FO</a></li>
+                    <li><a href="#comparativo">Análise Técnica</a></li>
+                    <li><a href="#tabela">Tabela Direta</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1>Análise FI-FO: <span>Câmeras IP vs. Analógicas Legadas</span></h1>
+                <p>Descubra o momento exato de modernizar sua infraestrutura de CFTV e por que a tecnologia IP de ponta é a escolha certa para o futuro do seu patrimônio.</p>
+                <button class="btn btn-primary" onclick="openServiceModal('Consultoria Tecnológica IP')">
+                    <i class="fas fa-microchip" style="margin-right: 8px;"></i> Solicitar Avaliação Técnica
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção Conceito FI-FO -->
+        <section id="conceito" class="fifo-intro">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Entenda a Metodologia FI-FO</h2>
+                    <p>Mapeamos quando uma tecnologia deve entrar no seu projeto (Fit-In) e quando ela precisa ser descontinuada ou substituída (Fit-Out).</p>
+                </div>
+                <div class="fifo-grid">
+                    <div class="fifo-card" data-aos="fade-right" data-aos-delay="100">
+                        <span class="fifo-badge badge-in">FIT-IN (Entrada)</span>
+                        <h3>Câmeras IP de Alta Tecnologia</h3>
+                        <p><strong>Por que adotar agora?</strong> Inteligência Artificial integrada, análise de vídeo em tempo real (Leitura de placas, reconhecimento facial), resolução 4K+, cabeamento estruturado simplificado (PoE) e facilidade de integração em redes corporativas modernas.</p>
+                    </div>
+                    <div class="fifo-card fit-out" data-aos="fade-left" data-aos-delay="200">
+                        <span class="fifo-badge badge-out">FIT-OUT (Saída)</span>
+                        <h3>Câmeras Analógicas Legadas</h3>
+                        <p><strong>Por que descontinuar?</strong> Gargalos de infraestrutura com cabos coaxiais pesados, suscetibilidade a ruídos elétricos, limitação de resolução máxima, ausência de IA nativa e alto custo de manutenção preventiva a médio/longo prazo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Análise Técnica Detalhada (Pontos Fortes e Fracos) -->
+        <section id="comparativo">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Análise Técnica Detalhada</h2>
+                    <p>Compare os pontos fortes e fragilidades de cada ecossistema para tomada de decisão assertiva.</p>
+                </div>
+                <div class="tech-comparison-grid">
+                    
+                    <!-- Coluna IP -->
+                    <div class="tech-column ip-tech" data-aos="fade-up" data-aos-delay="100">
+                        <div class="tech-header">
+                            <i class="fas fa-network-wired"></i>
+                            <div>
+                                <h3>Câmeras IP Inteligentes</h3>
+                                <small style="color: var(--primary-dark); font-weight: 700;">TECNOLOGIA DE PONTA</small>
+                            </div>
+                        </div>
+
+                        <div class="list-title"><i class="fas fa-thumbs-up" style="color: var(--primary);"></i> Pontos Fortes (Fit-In)</div>
+                        <ul class="points-list list-strong">
+                            <li><i class="fas fa-circle-check"></i> <strong>Inteligência Artificial (VCA):</strong> Detecção precisa de humanos, veículos, linhas virtuais e cruzamento de perímetro sem falsos alarmes.</li>
+                            <li><i class="fas fa-circle-check"></i> <strong>Tecnologia PoE (Power over Ethernet):</strong> Alimetação de energia e dados trafegando em um único cabo de rede (UTP).</li>
+                            <li><i class="fas fa-circle-check"></i> <strong>Resolução Superior & WDR Real:</strong> Imagens nítidas em 4K/8K com compensação perfeita de luz e sombras.</li>
+                            <li><i class="fas fa-circle-check"></i> <strong>Escalabilidade Ilimitada:</strong> Expansão simplificada na rede local sem depender de trocas completas de gravadores centralizados.</li>
+                            <li><i class="fas fa-circle-check"></i> <strong>Criptografia Nativa:</strong> Tráfego de dados protegido contra interceptações e invasões.</li>
+                        </ul>
+
+                        <div class="list-title"><i class="fas fa-thumbs-down" style="color: var(--danger);"></i> Pontos Fracos</div>
+                        <ul class="points-list list-weak">
+                            <li><i class="fas fa-circle-xmark"></i> <strong>Investimento Inicial Maior:</strong> Custo por equipamento individual mais elevado em relação a sensores analógicos básicos.</li>
+                            <li><i class="fas fa-circle-xmark"></i> <strong>Exigência de Infraestrutura de Rede:</strong> Requer switches gerenciáveis, patch panels e projeto de rede estruturado.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Coluna Analógica -->
+                    <div class="tech-column analog-tech" data-aos="fade-up" data-aos-delay="200">
+                        <div class="tech-header">
+                            <i class="fas fa-tv"></i>
+                            <div>
+                                <h3>Câmeras Analógicas Legadas</h3>
+                                <small style="color: #666; font-weight: 700;">SISTEMAS TRADICIONAIS (HD/CVBS)</small>
+                            </div>
+                        </div>
+
+                        <div class="list-title"><i class="fas fa-thumbs-up" style="color: var(--primary);"></i> Pontos Fortes</div>
+                        <ul class="points-list list-strong">
+                            <li><i class="fas fa-circle-check"></i> <strong>Baixo Custo de Aquisição:</strong> Custo unitário de câmera e DVR reduzido para projetos básicos de pequeno porte.</li>
+                            <li><i class="fas fa-circle-check"></i> <strong>Plug and Play Simples:</strong> Conexão direta via cabo coaxial/balun sem necessidade de configuração de IP/Subredes.</li>
+                            <li><i class="fas fa-circle-check"></i> <strong>Zero Latência de Transmissão:</strong> Sinal de vídeo enviado de forma direta e sem compactação de rede local.</li>
+                        </ul>
+
+                        <div class="list-title"><i class="fas fa-thumbs-down" style="color: var(--danger);"></i> Pontos Fracos (Fit-Out)</div>
+                        <ul class="points-list list-weak">
+                            <li><i class="fas fa-circle-xmark"></i> <strong>Vulnerabilidade a Interferências:</strong> Cabos coaxiais sofrem com ruídos elétricos, ondulações de energia e perdas em longas distâncias.</li>
+                            <li><i class="fas fa-circle-xmark"></i> <strong>Cabeamento Oneroso:</strong> Exige múltiplos cabos dedicados para sinal, fonte de alimentação e áudio individualmente.</li>
+                            <li><i class="fas fa-circle-xmark"></i> <strong>Sem Inteligência na Borda:</strong> Dependência total do gravador para qualquer recurso analítico (geralmente limitado).</li>
+                            <li><i class="fas fa-circle-xmark"></i> <strong>Teto de Resolução:</strong> Perda significativa de qualidade e detalhes comparado aos sensores IP avançados.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabela Comparativa Direta -->
+        <section id="tabela" class="table-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Comparativo Técnico Lado a Lado</h2>
+                    <p>Resumo para tomada de decisão em novos investimentos de segurança eletrônica.</p>
+                </div>
+                <div class="table-wrapper" data-aos="zoom-in">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Recurso / Característica</th>
+                                <th>Câmeras IP (Ponta)</th>
+                                <th>Câmeras Analógicas (Legado)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Qualidade de Imagem</strong></td>
+                                <td><span class="badge-table badge-high">Até 4K / Ultra HD</span></td>
+                                <td><span class="badge-table badge-low">Limitado (Full HD / 4MP)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cabeamento</strong></td>
+                                <td><span class="badge-table badge-high">1 Cabo UTP (PoE Dados + Energia)</span></td>
+                                <td><span class="badge-table badge-low">Coaxial + Cabo de Alimentação</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Inteligência de Vídeo (IA)</strong></td>
+                                <td><span class="badge-table badge-high">Nativa no Sensor / Câmera</span></td>
+                                <td><span class="badge-table badge-low">Ausente ou Dependente do DVR</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Segurança da Informação</strong></td>
+                                <td><span class="badge-table badge-high">Criptografado (HTTPS / 802.1x)</span></td>
+                                <td><span class="badge-table badge-low">Sinal Aberto (Sujeito a Interceptação)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Facilidade de Expansão</strong></td>
+                                <td><span class="badge-table badge-high">Alta (Estrutura de Rede Existente)</span></td>
+                                <td><span class="badge-table badge-low">Baixa (Requer novos cabos até o DVR)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Custo-Benefício Longo Prazo</strong></td>
+                                <td><span class="badge-table badge-high">Elevado (Baixa Manutenção)</span></td>
+                                <td><span class="badge-table badge-low">Reduzido (Alta Manutenção)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Migre do Legado para a Alta Tecnologia</h2>
+                    <p>Projetamos a transição do seu sistema analógico para IP sem desperdício de investimento.</p>
+                </div>
+                <div class="contact-box" data-aos="zoom-in">
+                    <p>Fale diretamente com nossa equipe técnica via WhatsApp:</p>
+                    <a href="tel:14998160878" class="phone-number">(14) 99816-0878</a>
+                    <a href="https://wa.me/5514998160878" data-umami-event="Clique-WhatsApp-FIFO" target="_blank" class="btn btn-primary btn-lg">
+                        <i class="fab fa-whatsapp"></i> Solicitar Migração Tecnológica
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Solicitação -->
+    <div class="modal-overlay" id="serviceModal" onclick="closeServiceModal(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="closeServiceModal(null)"><i class="fas fa-times"></i></div>
+            <h3 id="modalTitle">Solicitação de Diagnóstico IP</h3>
+            <form id="serviceForm" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="selectedService">
+                <div class="form-group">
+                    <label for="clientName">Nome Completo *</label>
+                    <input type="text" id="clientName" required placeholder="Ex: João Silva" autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">WhatsApp (com DDD) *</label>
+                    <input type="tel" id="clientPhone" required placeholder="(00) 00000-0000" maxlength="15" oninput="maskPhone(this)">
+                </div>
+                <div class="form-group">
+                    <label for="clientCity">Cidade *</label>
+                    <input type="text" id="clientCity" required placeholder="Ex: Ourinhos - SP">
+                </div>
+                <div class="form-group">
+                    <label for="clientDescription">Detalhes do Projeto *</label>
+                    <textarea id="clientDescription" required placeholder="Informe quantas câmeras analógicas possui ou o que deseja atualizar..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar para o WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="https://raw.githubusercontent.com/amdremessias/olhardigitalseguran-a/main/images/asdhaRdiGital.png" alt="Olhar Digital">
+                    <p>Especialistas em transição tecnológica e projetos de segurança eletrônica IP de alta desempenho.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="termos.html">Termos de Uso</a></li>
+                        <li><a href="cookies.html">Política de Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (14) 99816-0878</p>
+                    <p><i class="fas fa-envelope"></i> contato@olhardigitalseguranca.com.br</p>
+                    <p><i class="fas fa-location-dot"></i> Atendimento em toda região</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 OLHAR DIGITAL SEGURANÇA ELETRÔNICA. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('serviceModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const selectedServiceInput = document.getElementById('selectedService');
+        const serviceForm = document.getElementById('serviceForm');
+
+        function openServiceModal(serviceName) {
+            modalTitle.textContent = `Solicitação: ${serviceName}`;
+            selectedServiceInput.value = serviceName;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceModal(e) {
+            if (e === null || e.target === modal) {
+                modal.classList.remove('active');
+                serviceForm.reset();
+                document.body.style.overflow = '';
+            }
+        }
+
+        function maskPhone(input) {
+            let v = input.value.replace(/\D/g, "");
+            if (v.length > 11) v = v.substring(0, 11);
+            if (v.length > 6) {
+                input.value = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+            } else if (v.length > 2) {
+                input.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+            } else if (v.length > 0) {
+                input.value = `(${v}`;
+            } else {
+                input.value = "";
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const service = selectedServiceInput.value;
+            const name = document.getElementById('clientName').value.trim();
+            const rawPhone = document.getElementById('clientPhone').value.replace(/\D/g, "");
+            const city = document.getElementById('clientCity').value.trim();
+            const description = document.getElementById('clientDescription').value.trim();
+
+            if (rawPhone.length !== 11) {
+                alert("Por favor, informe um WhatsApp válido com DDD e 9 dígitos.");
+                return;
+            }
+
+            const text = `*SOLICITAÇÃO DE AVALIAÇÃO TECNOLÓGICA (FI-FO)* 🛡️\n\n` +
+                         `🛠️ *Interesse:* ${service}\n` +
+                         `👤 *Nome:* ${name}\n` +
+                         `📱 *WhatsApp:* (${rawPhone.substring(0,2)}) ${rawPhone.substring(2,7)}-${rawPhone.substring(7)}\n` +
+                         `📍 *Cidade:* ${city}\n\n` +
+                         `📝 *Detalhes:* ${description}`;
+
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/5514998160878?text=${encodedText}`, '_blank');
+            
+            modal.classList.remove('active');
+            serviceForm.reset();
+            document.body.style.overflow = '';
+        }
+
+        // Proteção simples contra inspeção
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'i'.charCodeAt(0))) return false;
+        };
+    </script>
+</body>
+</html>
