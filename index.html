@@ -814,6 +814,76 @@
             font-size: 0.9rem;
         }
 
+        /* --- CSS DO LIGHTBOX (ZOOM DA GALERIA) --- */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 11000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            object-fit: contain;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-modal.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-caption {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            font-weight: 600;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lightbox-close:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
         /* --- MEDIA QUERIES APERFEIÇOADAS PARA FLUIDEZ MOBILE --- */
         @media (max-width: 992px) {
             .mobile-menu-btn {
@@ -1126,6 +1196,13 @@
             </div>
         </section>
 
+        <!-- ESTRUTURA DO MODAL DO ZOOM DA GALERIA -->
+        <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+            <div class="lightbox-close" onclick="closeLightbox(null)"><i class="fas fa-times"></i></div>
+            <img src="" alt="" class="lightbox-content" id="lightboxImg">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+
         <section id="partners" style="padding: 60px 0; background: #fff;">
             <div class="container">
                 <div class="section-header" data-aos="fade-up" style="margin-bottom: 40px;">
@@ -1370,6 +1447,41 @@
             serviceForm.reset();
             document.body.style.overflow = '';
         }
+
+        // --- LÓGICA DE ZOOM DA GALERIA (LIGHTBOX) ---
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const overlayText = item.querySelector('.gallery-overlay span');
+                
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightboxCaption.textContent = overlayText ? overlayText.textContent : img.alt;
+                    
+                    lightboxModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        function closeLightbox(e) {
+            if (e === null || e.target === lightboxModal) {
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Fechar Lightbox com a tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+                closeLightbox(null);
+            }
+        });
 
         // --- PROTEÇÃO CONTRA INSPEÇÃO ---
         document.onkeydown = function(e) {
